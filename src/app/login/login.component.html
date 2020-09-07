@@ -1,0 +1,66 @@
+<!--<form (ngSubmit)="checkLogin()">-->
+<!--  <div class="container mt-5 float-left">-->
+<!--    <div class="col-md-12">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-4">-->
+<!--          <div class="form-group">-->
+<!--            <label>Email</label>-->
+<!--            <input name="username" required="true" [(ngModel)]="username" aria-describedby="emailHelp" type="email"-->
+<!--                   class="form-control"-->
+<!--                   placeholder="Insira seu email">-->
+<!--            <small id="emailHelp" class="form-text text-muted">-->
+<!--              Nunca compartilharemos seu e-mail com mais ninguém.</small>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-4">-->
+<!--          <div class="form-group">-->
+<!--            <label>Senha</label>-->
+<!--            <input type="password" required="true" name="password" [(ngModel)]="password" class="form-control"-->
+<!--                   placeholder="Insira sua senha">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-4">-->
+<!--          <button type="submit" class="btn btn-success btn-block">-->
+<!--            Login-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</form>-->
+<mat-card class="card-login">
+  <form (ngSubmit)="checkLogin()" class="example-form">
+    <mat-icon color="primary" aria-hidden="false" aria-label="Example home icon">person</mat-icon>
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input [(ngModel)]="username" matInput [formControl]="emailInput"
+             placeholder="Ex. AngularAuth@example.com" required>
+      <mat-hint> Nunca compartilharemos seu e-mail com mais ninguém.</mat-hint>
+      <mat-error *ngIf="emailInput.hasError('email') && !emailInput.hasError('required')">
+        Informe um email válido por favor.
+      </mat-error>
+      <mat-error *ngIf="emailInput.hasError('required')">
+        O email é <strong>obrigatório</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input [formControl]="passwordInput" [(ngModel)]="password" matInput placeholder="Senha"
+             [type]="hide ? 'password' : 'text'" required>
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-hint *ngIf="!passwordInput.value">Informe sua senha</mat-hint>
+      <mat-error *ngIf="passwordInput.hasError('required')">
+        A senha é <strong>obrigatória</strong>
+      </mat-error>
+    </mat-form-field>
+    <br><br>
+    <div style="text-align: right">
+      <button type="submit" class="button-login" mat-raised-button color="primary">Entrar</button>
+      <button class="button-login" mat-raised-button color="primary">Cadastrar-se</button>
+    </div>
+  </form>
+</mat-card>
